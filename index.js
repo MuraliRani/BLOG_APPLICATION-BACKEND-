@@ -14,12 +14,13 @@ const fs = require("fs");
 const salt = bcrypt.genSaltSync(10);
 const secret = "andfakseaia2484asd14";
 
-// Use CORS middleware before defining routes
+const allowedOrigin = "https://main--blog-application-mernstack.netlify.app"; // Update this to your frontend's origin
+
 app.use(
   cors({
-    origin: 'https://blog-application-mernstack.netlify.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: allowedOrigin,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
@@ -30,19 +31,20 @@ app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://muralideva443:murali333@cluster0.yrxkc.mongodb.net/Blogs",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-)
-.then(() => {
-  console.log("Connected to MongoDB");
-})
-.catch((error) => {
-  console.error("Failed to connect to MongoDB:", error);
-});
+mongoose
+  .connect(
+    "mongodb+srv://muralideva443:murali333@cluster0.yrxkc.mongodb.net/Blogs",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+  });
 
 // Define your routes
 app.post("/register", async (req, res) => {
@@ -84,7 +86,6 @@ app.get("/profile", (req, res) => {
     res.json(info);
   });
 });
-
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
@@ -161,7 +162,7 @@ app.get("/post/:id", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Server is Running...............")
+  res.send("Server is Running...............");
 });
 
 // Start the server
