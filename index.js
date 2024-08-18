@@ -14,6 +14,7 @@ const fs = require("fs");
 const salt = bcrypt.genSaltSync(10);
 const secret = "andfakseaia2484asd14";
 
+// Use CORS middleware before defining routes
 app.use(
   cors({
     credentials: true,
@@ -21,6 +22,7 @@ app.use(
   })
 );
 
+// Middleware setup
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
@@ -40,6 +42,7 @@ mongoose.connect(
   console.error("Failed to connect to MongoDB:", error);
 });
 
+// Define your routes
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -152,9 +155,9 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("Server is Running...............")
-})
+});
 
 // Start the server
 app.listen(4000, () => {
