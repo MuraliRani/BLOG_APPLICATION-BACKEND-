@@ -17,9 +17,10 @@ const secret = "andfakseaia2484asd14";
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: ["https://blog-application-mernstack.netlify.app"],
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
