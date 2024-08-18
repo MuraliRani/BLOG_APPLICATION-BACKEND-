@@ -17,7 +17,7 @@ const secret = "andfakseaia2484asd14";
 // Use CORS middleware before defining routes
 app.use(
   cors({
-    origin: 'https://blog-application-mernstack.netlify.app/',
+    origin: 'https://blog-application-mernstack.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
