@@ -14,7 +14,7 @@ const fs = require("fs");
 const salt = bcrypt.genSaltSync(10);
 const secret = "andfakseaia2484asd14";
 
-const allowedOrigin = "https://main--blog-application-mernstack.netlify.app"; // Update this to your frontend's origin
+const allowedOrigin = ["https://main--blog-application-mernstack.netlify.app","https://blog-application-mernstack.netlify.app"]; // Update this to your frontend's origin
 
 app.use(
   cors({
